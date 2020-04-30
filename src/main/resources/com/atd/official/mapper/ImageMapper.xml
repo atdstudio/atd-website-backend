@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?> <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.atd.official.mapper.ImageMapper">
+    <select id="getById" resultType="com.atd.official.entity.Image">
+        SELECT
+            *
+        FROM
+            image_info
+        WHERE
+           id=#{Id}
+    </select>
+
+    <select id="getDisplay" resultType="com.atd.official.entity.Image">
+        SELECT
+            name, location, link
+        FROM
+            image_info
+        WHERE
+            display=1
+    </select>
+
+    <select id="getAll" resultType="com.atd.official.entity.Image">
+        SELECT
+            *
+        FROM
+            image_info
+    </select>
+
+    <insert id="insertImage" keyProperty="Id"
+            keyColumn="id" parameterType="com.atd.official.entity.Image">
+        INSERT INTO
+            image_info
+            (name, location, date , display, link)
+        VALUES
+            (#{name},#{location},#{date},#{display},#{link})
+    </insert>
+
+
+    <delete id="removeImage" parameterType="String">
+        DELETE FROM
+            image_info
+        WHERE
+            id=#{Id}
+    </delete>
+
+    <update id="updateText" parameterType="com.atd.official.entity.Image">
+        UPDATE
+            image_info
+        <set>
+            name=#{name}
+        </set>
+        WHERE
+        id=#{Id}
+    </update>
+
+    <update id="updateDisplay" parameterType="com.atd.official.entity.Image">
+        UPDATE
+            image_info
+        <set>
+            display=#{display}
+        </set>
+        WHERE
+        id=#{Id}
+    </update>
+
+</mapper>
